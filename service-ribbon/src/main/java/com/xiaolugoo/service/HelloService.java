@@ -14,14 +14,11 @@ public class HelloService {
     @Autowired
     RestTemplate restTemplate;
 
-    //断路器访问出错时访问  hiError方法
-    @HystrixCommand(fallbackMethod = "hiError")
+
     public String hiService(String name) {
         return restTemplate.getForObject("http://SERVICE-HI/hi?name="+name,String.class);
     }
 
-    public String hiError(String name) {
-        return "hi,"+name+",sorry,error!";
-    }
+
 
 }
